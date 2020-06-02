@@ -4,37 +4,40 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func 
 from flask import g, request, jsonify, after_this_request, Flask, render_template
-
-app = Flask(__name__)
+import numpy as np
+from datetime import datetime, timedelta
+lite_app = Flask(__name__)
 
 database = './data/Charity.sqlite'
 
 engine = create_engine('sqlite:///Charity.sqlite')
-
+conn = engine.connect()
 # reflect an existing database into a new model
 Base = automap_base()
 # reflect the tables
 Base.prepare(engine, reflect=True)
-
+Base.classes.keys()
 # Save reference to the table
 Charity = Base.classes.Charity
+
+
 
 #################################################
 # Flask Setup
 #################################################
-app = Flask(__name__)
+lite_app = Flask(__name__)
 
 #################################################
 # Flask Routes
 #################################################
-@app.route("/")
+@lite_app.route("/")
 def welcome():
-    """List all available api routes."""
+    """List all available charity data routes."""
     return (
         f"Available Routes:<br/>"
-        f"/api/v1.0/charity<br/>"
+        f"/api/v1.0/charity"
     )
-@app.route("/api/v1.0/charity")
+@lite_app.route("/api/v1.0/charity")
 def charity():
     # Create our session (link) from Python to the DB
     session = Session(engine)
@@ -56,7 +59,7 @@ def charity():
                         Charity.net_assets,	Charity.organization_type,\
                         	Charity.other_revenue,	Charity.overall_score,	Charity.payments_to_affiliates,	\
                                 Charity.program_expenses,	Charity.state_abbr,\
-                                	Charity.total_contributions,	Charity.lat,	Charity.lng]).all()
+                                	Charity.total_contributions,	Charity.lat,	Charity.lng).all()
 
     session.close()
     col_name = [charity_id,	accountability_score,	administrative_expenses,	charity_name,	charity_url,	city,\
@@ -77,5 +80,5 @@ def charity():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    lite_app.run(debug=True)
 
