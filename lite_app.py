@@ -6,6 +6,7 @@ from sqlalchemy import create_engine, func
 from flask import g, request, jsonify, after_this_request, Flask, render_template
 import numpy as np
 from datetime import datetime, timedelta
+import pandas as pd
 lite_app = Flask(__name__)
 
 database = './data/Charity.sqlite'
@@ -18,7 +19,7 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 Base.classes.keys()
 # Save reference to the table
-Charity = Base.classes.Charity
+Charity = pd.read_sql("select * from Charity",conn)
 
 
 
