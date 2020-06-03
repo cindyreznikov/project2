@@ -42,41 +42,61 @@
           <li class="nav-item">
             <a class="nav-link" href="rankings.html">Top 10</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="scatter.html">Scatter Plot</a>
-          </li>
         </ul>
       </div>
     </div>
   </nav>
-
+<!--  -->
   <header class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">See the details on your favority charity here!</h1>
-        <h2 class="masthead-subheading mb-0">using filters(city, state, org type drop downs) and autocomplete charity name  </h2>
-        <h2 class="masthead-subheading mb-0">Charity Name, URL, City, State, Overall Score, Net Assets, Leader Comp, Total Contributions </h2>
-        <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Andrew and Cindy</a>
+        <h1 class="masthead-heading mb-0">Key Charity Metrics</h1>
+        <h1 class="masthead-heading mb-0">  </h1>
+        <h1 class="masthead-subheading mb-0"> </h1>  
+        <!-- <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Andrew and Cindy</a> -->
       </div>
+   
+      <!-- <div class="bg-circle-2 bg-circle"></div> -->
+
+      <h5> Charity Name: 
+            <select id="selName" onchange="optionChanged(this.value)"></select></h5>
+      <div id="bloodhound">
+        <h5> Organization Type:
+            <input class="typeahead" type="text" placeholder="Human and Civil Rights : Advocacy and Education"></h5>        
+      </div>
+    <!-- </div>          -->
+    <!-- <div class="bg-circle-2 bg-circle"></div> -->
+    <!-- <div id="table-area" class=""> -->
+      <table id="charity-table" class="table table-striped">
+        <thead>
+          <tr>
+            <th class="table-head">Charity Name</th>
+            <th class="table-head">City</th>
+            <th class="table-head">State</th>
+            <th class="table-head">Organization Type</th>
+            <th class="table-head">Overall Score</th>
+            <th class="table-head">Admin Expenses</th>
+            <th class="table-head">Leader Compensation</th>
+            <th class="table-head">Total Contributions</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
     </div>
-    <div class="bg-circle-1 bg-circle"></div>
-    <div class="bg-circle-2 bg-circle"></div>
     <div class="bg-circle-3 bg-circle"></div>
     <div class="bg-circle-4 bg-circle"></div>
   </header>
 
-
-
   <section>
-
-    <div id="chart"></div>
-
+    <div class ="container">
+      
+    </div>
   </section>
 
   <!-- Footer -->
   <footer class="py-5 bg-black">
     <div class="container">
-      <p class="m-0 text-center text-white small">Copyright &copy; Jade, Jodi, Ronaldo, Cindy</p>
+      <p class="m-0 text-center text-white small">Copyright &copy; Jade, Jodi, Ronaldo, Cindy, Andrew</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -84,7 +104,10 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="static/js/accounting.js"></script>
+  <script src="static/js/typeahead.js"></script>
+  <script src="static/js/metrics.js"></script>
 </body>
 
 </html>
