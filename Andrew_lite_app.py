@@ -91,5 +91,17 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
+@app.route("/metricspage")
+def metrics_page():
+    """Metrics Page"""
+    return render_template("metrics.html")
+
+@app.route("/scatter")
+def scatter_page():
+    """Scatter Page"""
+    return render_template("scatter.html")
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
