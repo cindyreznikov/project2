@@ -34,12 +34,67 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
-@app.route('/')
-def fun():
+@app.route('/metrics')
+def metrics():
     #cur = get_db().cursor()
-    for user in query_db('select * from Charity'):
-        print(user['charity_id'])
-    return ""
+    scores = []
+    charity_names = []
+    city = []
+    state = []
+    organization_type = []
+    scores = []
+    admin_exp = []
+    leader_comp = []
+    total_cont = []
+    for metric in query_db('select charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions from Charity order by charity_name'):
+       #print(metric)
+       charity_names.append(metric["charity_name"])
+       city.append(metric["city"])
+       state.append(metric["state_abbr"])
+       organization_type.append(metric["organization_type"])
+       scores.append(metric["overall_score"])
+       admin_exp.append(metric["administrative_expenses"])
+       leader_comp.append(metric["compensation_leader_compensation"])
+       total_cont.append(metric["total_contributions"])
+
+    metrics_data = {}
+    metrics_data["charity_name"] = charity_names
+    metrics_data["city"] = city
+    metrics_data["state"] = state
+    metrics_data["organization_type"] = organization_type
+    metrics_data["scores"] = scores
+    metrics_data["admin_expenses"] = admin_exp
+    metrics_data["leader_compensation"] = leader_comp
+    metrics_data["total_contributions"] = total_cont   
+    return jsonify(metrics_data)
+
+@app.route('/location')
+def locs():
+    #cur = get_db().cursor()
+    charity_names = []
+    lat = []
+    lng = []
+    for location in query_db('select charity_name, lat, lng from Charity order by charity_name'):
+        charity_names.append(location["charity_name"])
+        lat.append(location["lat"])
+        lng.append(location["lng"])
+
+    locations_data = {}
+    locations_data["charity_name"] = charity_names
+    locations_data["latitude"] = lat
+    locations_data["longitude"] = lng
+
+    return jsonify(locations_data)
+
+    #all_charity = []
+#     for charity_id,	accountability_score,	administrative_expenses,	charity_name,	charity_url,	city, cn_advisory,compensation_leader_compensation,	compensation_leader_expense_percent, compensation_leader_title, excess_or_deficit_for_year,	financial_score,	fundraising_expenses,	net_assets,	organization_type, other_revenue,	overall_score,	payments_to_affiliates,	program_expenses,	state_abbr, total_contributions, lat, lng in results:
+ 
+#         charity_dict = {}
+#         charity_dict["charity_id"] = charity_id
+
+#         all_charity.append(charity_dict)
+
+#     return jsonify(all_charity)
 # engine = create_engine('sqlite:///Charity.sqlite')
 # conn = engine.connect()
 # # reflect an existing database into a new model
