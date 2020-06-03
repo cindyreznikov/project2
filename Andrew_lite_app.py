@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 #charity_data=pd.read_sql("select * from charity",conn)
-database = './data/Charity.sqlite'
+database = './data/Charity_new.sqlite'
 
 app = Flask(__name__)
 
@@ -46,7 +46,8 @@ def metrics():
     admin_exp = []
     leader_comp = []
     total_cont = []
-    for metric in query_db('select charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions from Charity order by charity_name'):
+    charity_id = []
+    for metric in query_db('select charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions, charity_id from Charity order by charity_name'):
        #print(metric)
        charity_names.append(metric["charity_name"])
        city.append(metric["city"])
@@ -56,7 +57,7 @@ def metrics():
        admin_exp.append(metric["administrative_expenses"])
        leader_comp.append(metric["compensation_leader_compensation"])
        total_cont.append(metric["total_contributions"])
-
+       charity_id.append(metric["charity_id"])
     metrics_data = {}
     metrics_data["charity_name"] = charity_names
     metrics_data["city"] = city
@@ -65,7 +66,8 @@ def metrics():
     metrics_data["scores"] = scores
     metrics_data["admin_expenses"] = admin_exp
     metrics_data["leader_compensation"] = leader_comp
-    metrics_data["total_contributions"] = total_cont   
+    metrics_data["total_contributions"] = total_cont
+    metrics_data["charity_id"] = charity_id  
     return jsonify(metrics_data)
 
 @app.route('/location')
@@ -85,6 +87,8 @@ def locs():
     locations_data["longitude"] = lng
 
     return jsonify(locations_data)
+
+
 
 @app.route("/")
 def index():
