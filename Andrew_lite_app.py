@@ -88,7 +88,42 @@ def locs():
 
     return jsonify(locations_data)
 
-
+@app.route('/ranking')
+def ranking():
+    #cur = get_db().cursor()
+    org = "International "
+    scores = []
+    charity_names = []
+    city = []
+    state = []
+    organization_type = []
+    scores = []
+    admin_exp = []
+    leader_comp = []
+    total_cont = []
+    charity_id = []
+    for rank in query_db('select charity_id, charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions from Charity where organization_type = ?', (org,), one=True):
+        #print(metric)
+        charity_id.append(rank["charity_id"])
+        charity_names.append(rank["charity_name"])
+        city.append(rank["city"])
+        state.append(rank["state_abbr"])
+        organization_type.append(rank["organization_type"])
+        scores.append(rank["overall_score"])
+        admin_exp.append(rank["administrative_expenses"])
+        leader_comp.append(rank["compensation_leader_compensation"])
+        total_cont.append(rank["total_contributions"])
+    rankings_data = {}
+    rankings_data["charity_id"] = charity_id
+    rankings_data["charity_name"] = charity_names
+    rankings_data["city"] = city
+    rankings_data["state"] = state
+    rankings_data["organization_type"] = organization_type
+    rankings_data["scores"] = scores
+    rankings_data["admin_expenses"] = admin_exp
+    rankings_data["leader_compensation"] = leader_comp
+    rankings_data["total_contributions"] = total_cont
+    return jsonify(rankings_data)
 
 @app.route("/")
 def index():
