@@ -88,10 +88,10 @@ def locs():
 
     return jsonify(locations_data)
 
-@app.route('/ranking')
-def ranking():
+@app.route('/ranking/<org>')
+def ranking(org):
     #cur = get_db().cursor()
-    org = "International "
+    org = "Education "
     scores = []
     charity_names = []
     city = []
@@ -102,8 +102,9 @@ def ranking():
     leader_comp = []
     total_cont = []
     charity_id = []
-    for rank in query_db('select charity_id, charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions from Charity where organization_type = ?', (org,), one=True):
-        #print(metric)
+    charities = query_db('select charity_id, charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions from Charity where organization_type = ?', (org,), one=False)
+    for rank in charities: #query_db('select charity_id, charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions from Charity where organization_type = ?', (org,), one=True):
+        print(rank)
         charity_id.append(rank["charity_id"])
         charity_names.append(rank["charity_name"])
         city.append(rank["city"])
