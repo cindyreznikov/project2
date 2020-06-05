@@ -37,7 +37,7 @@ function buildCharts(organization) {
 
      // Prepare a list of objects for sorting
     var list = [];
-    for (var i = 0; i < data.charity_id.length; i++) {
+    for (var i = 0; i < 8190; i++) {
               // Push each object into the list
           list.push({'charity_id': data.charity_id[i],'charity_name': data.charity_name[i], 'overall_score': data.scores[i], 'total_contributions':data.total_contributions[i]});
     }
@@ -49,7 +49,7 @@ function buildCharts(organization) {
     var charity_id15= list.slice(0,15).map(record => "ID" + record.charity_id.toString());
     var values15 = list.slice(0,15).map(record => record.overall_score);
     var total_contributions15 = list.slice(0,15).map(record =>  record.total_contributions );
-    var charity_name13= list.slice(0,15).map(record =>  record.charity_name );
+    var charity_name15 = list.slice(0,15).map(record =>  record.charity_name );
       
     var trace1 = [{
         x: values15,
