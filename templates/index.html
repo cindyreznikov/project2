@@ -11,7 +11,7 @@
   <title>Charity Navigator "Navigator"</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
   <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
@@ -19,7 +19,7 @@
     rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="static/css/one-page-wonder.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/one-page-wonder.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -27,13 +27,9 @@
 
   <!-- Navigation -->
 
-<!-- ***********************
-need to update with Flask App routes
-**************************** -->
-
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">U.S. Charities</a>
+      <a class="navbar-brand" href="/">U.S. Charities</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
         aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -41,14 +37,17 @@ need to update with Flask App routes
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <!-- link to Visualization 1 -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="/usmap">Charity Look Up</a>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="usmap.html">Charity Look Up</a>
+            <a class="nav-link" href="/usmap">Charity Marker Map</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="rankings.html">Charity Marker Map</a>
+            <a class="nav-link" href="/metricspage">Charity Metrics</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="metrics.html">Charity Metrics</a>
+            <a class="nav-link" href="/scatter">Top 15 Charities</a>
           </li>
         </ul>
       </div>
@@ -75,7 +74,7 @@ need to update with Flask App routes
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
             <a href="https://www.charitynavigator.org/" target="_blank">
-              <img class="img-fluid" src="static/img/01.jpg" alt="">
+              <img class="img-fluid" src="{{ url_for('static', filename='img/charitynavigator.png') }}" alt="">
             </a>
           </div>
         </div>
@@ -105,7 +104,7 @@ need to update with Flask App routes
               <ul>
                <li>
                  <!-- need to update with Flask App routes -->
-                <p><a href="usmap.html">Where is a charity headquartered?</a>
+                <p><a href="/usmap">Where is a charity headquartered?</a>
                   Perhaps you want to give to a hometown charity, whether that's your current or past stomping grounds. 
                   <!-- Or maybe an organization has caught your eye and you want to know more about it, starting with where it's located. Use our U.S. map to search by -- could we add in a search of the charities with a toolbar and it pops up the charity HQ  -->
                 </p>
@@ -146,8 +145,8 @@ need to update with Flask App routes
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="static/vendor/jquery/jquery.min.js"></script>
-  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>/script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 </body>
 
