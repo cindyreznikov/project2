@@ -86,15 +86,18 @@ def locs():
     charity_names = []
     lat = []
     lng = []
-    for location in query_db('select charity_name, lat, lng from Charity order by charity_name'):
+    city_names = []
+    for location in query_db('select charity_name, lat, lng, city from Charity order by charity_name'):
         charity_names.append(location["charity_name"])
         lat.append(location["lat"])
         lng.append(location["lng"])
+        city_names.append(location["city"])
 
     locations_data = {}
     locations_data["charity_name"] = charity_names
     locations_data["latitude"] = lat
     locations_data["longitude"] = lng
+    locations_data["city"] = city_names
 
     return jsonify(locations_data)
 
