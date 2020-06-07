@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content=""> 
+
+  <title>Charity Navigator "Navigator"</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/one-page-wonder.min.css') }}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">U.S. Charities</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/usmap">Charity Marker Map</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/metricspage">Charity Metrics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/scatter">Top 15 Charities</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="masthead text-center text-white">
+    <div class="masthead-content">
+      <div class="container">
+        <h1 class="masthead-heading mb-0">Charity Navigator Navigator</h1>
+        <h2 class="masthead-subheading mb-0">Let Us Help You Give Intelligently</h2>
+        <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
+      </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <a href="https://www.charitynavigator.org/" target="_blank">
+              <img class="img-fluid" src="{{ url_for('static', filename='img/01.jpg') }}">
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4"></h2>
+            <p>Deciding where to give away your money can be a daunting choice. In comes Charity Navigator, an organization dedicated to giving <a href="https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=628" target="_blank">an unbiased, objective, numbers-based"</a> rating system to help you give <i>intelligently</i>. While designing this project, we found an excellent, fairly clean data set that was over 8,000 records of unique charitable organization data. This site brings key aspects of that data and Charity Navigator's mission to life. Please feel free to explore our visuals and see where your next giving dollars will go! [As a short disclaimer: we are in no way affiliated or connected with Charity Navigator.]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="p-5">
+            <!-- <img class="img-fluid rounded-circle" src="img/02.jpg" alt=""> -->
+            <!-- could insert image of one of our graphs/maps, etc. -->
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <h2 class="display-4">Explore the Charities</h2>
+            <p>As we designed the visualizations, we had a few questions in mind regarding how you as a user might explore this data, oriented around the guiding question: "what charity do I choose?" when thinking about donating precious dollars. Here are some of the main questions we had in mind and where you can find the visualizations that help answer your questions:
+              <ul>
+               <li>
+                 <!-- need to update with Flask App routes -->
+                <p><a href="/usmap">Where is a charity headquartered?</a>
+                  Perhaps you want to give to a hometown charity, whether that's your current or past stomping grounds. 
+                  <!-- Or maybe an organization has caught your eye and you want to know more about it, starting with where it's located. Use our U.S. map to search by -- could we add in a search of the charities with a toolbar and it pops up the charity HQ  -->
+                </p>
+               </li> 
+              </ul>
+              
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <!-- <img class="img-fluid rounded-circle" src="img/03.jpg" alt=""> -->
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4"></h2>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-black">
+    <div class="container">
+      <p class="m-0 text-center text-white small">Copyright &copy; Cindy, Ronaldo, Jade, Andrew & Jodi</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>/script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+
+</html>
