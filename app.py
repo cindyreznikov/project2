@@ -137,6 +137,7 @@ def ranking(organization):
     rankings_data["admin_expenses"] = admin_exp
     rankings_data["leader_compensation"] = leader_comp
     rankings_data["total_contributions"] = total_cont
+    print(rankings_data["charity_name"])
     return jsonify(rankings_data)
 
 @app.route("/")
@@ -158,6 +159,12 @@ def scatter_page():
 def us_map():
     """US Map page"""
     return render_template("usmap.html")
+
+@app.route("/rank")
+def rank():
+    """US Rankings page"""
+    return render_template("rankings.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
