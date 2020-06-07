@@ -2,99 +2,147 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>-----------------------</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/d3Style.css') }}">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content=""> 
+
+  <title>Charity Navigator "Navigator"</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="static/css/one-page-wonder.min.css" rel="stylesheet">
+
 </head>
 
 <body>
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-12">
-                <h1>---test Flask with js---------</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-6">
-                <div id="chart">
-                   
-                </div>
-             </div>
-            <div class="col-xs-12 col-md-6">
-                <div id="scatter">
-                   
-                </div>
-             </div> -->
-<!-- 
-        </div>
-        
-        <div class="row">
-            <div class="col-xs-12 col-md-12">
-                <div class="article">
-                  <h2> </h2>
-                  <p>bar chart displays total contributions of top 15 of Charities (all of them  overall scores are 100 points)</p>
 
-            
-                </div>
-
-            </div>
-        </div>
-    </div> -->
-
-
-
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 jumbotron text-center">
-        <h1>Charity Top 15 Dashboard</h1>
-        <p>Use the interactive charts below to show data in each category </p>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">U.S. Charities</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <!-- link to Visualization 1 -->
+          <li class="nav-item">
+            <a class="nav-link" href="/usmap">Charity Look Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/rankings">Charity Marker Map</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/metrics">Charity Metrics</a>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-5">
-        <div class="well">
-          <h5>Select Category:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
-        </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <!-- <h3 class="panel-title">Demographic Info</h3> -->
+  </nav>
+
+  <header class="masthead text-center text-white">
+    <div class="masthead-content">
+      <div class="container">
+        <h1 class="masthead-heading mb-0">Charity Navigator Navigator</h1>
+        <h2 class="masthead-subheading mb-0">Let Us Help You Give Intelligently</h2>
+        <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
+      </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <a href="https://www.charitynavigator.org/" target="_blank">
+              <img class="img-fluid" src="static/img/01.jpg" alt="">
+            </a>
           </div>
-          <div id="sample-metadata" class="panel-body"></div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4"></h2>
+            <p>Deciding where to give away your money can be a daunting choice. In comes Charity Navigator, an organization dedicated to giving <a href="https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=628" target="_blank">an unbiased, objective, numbers-based"</a> rating system to help you give <i>intelligently</i>. While designing this project, we found an excellent, fairly clean data set that was over 8,000 records of unique charitable organization data. This site brings key aspects of that data and Charity Navigator's mission to life. Please feel free to explore our visuals and see where your next giving dollars will go! [As a short disclaimer: we are in no way affiliated or connected with Charity Navigator.]</p>
+          </div>
         </div>
       </div>
-      <div class="col-md-7">
-        <div id="chart"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="p-5">
+            <!-- <img class="img-fluid rounded-circle" src="img/02.jpg" alt=""> -->
+            <!-- could insert image of one of our graphs/maps, etc. -->
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <h2 class="display-4">Explore the Charities</h2>
+            <p>As we designed the visualizations, we had a few questions in mind regarding how you as a user might explore this data, oriented around the guiding question: "what charity do I choose?" when thinking about donating precious dollars. Here are some of the main questions we had in mind and where you can find the visualizations that help answer your questions:
+              <ul>
+               <li>
+                <p><a href="usmap.html">Where is a charity headquartered?</a>
+                  Perhaps you want to give to a hometown charity - whether that's your current or past stomping grounds. 
+                  <!-- Or maybe an organization has caught your eye and you want to know more about it, starting with where it's located. Use our U.S. map to search by -- could we add in a search of the charities with a toolbar and it pops up the charity HQ  -->
+                </p>
+               </li> 
+              </ul>
+              
+            </p>
+          </div>
+        </div>
       </div>
-      <!-- <div class="col-md-2">
-        <div id="gauge"></div>
-      </div> -->
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bubble"></div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <!-- <img class="img-fluid rounded-circle" src="img/03.jpg" alt=""> -->
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4"></h2>
+            <p></p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-
-
-    <div id="footer">
-        <p>The Coding Boot Camp&copy;2016</p>
+  <!-- Footer -->
+  <footer class="py-5 bg-black">
+    <div class="container">
+      <p class="m-0 text-center text-white small">Copyright &copy; Cindy, Ronaldo, Jade, Andrew & Jodi</p>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <!-- <script type="text/javascript" src="./static/js/app.js"></script> -->
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-    <!-- <script src="{{ url_for('static', filename='js/scatter.js') }}"></script> -->
-    <!-- <script type="text/javascript" src="assets/js/app.js"></script> -->
-  
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="static/vendor/jquery/jquery.min.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
