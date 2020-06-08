@@ -11,14 +11,14 @@
   <title>U.S. Charities Metrics</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
   <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/one-page-wonder.min.css" rel="stylesheet">
+  <link href="{{url_for('static',filename='css/one-page-wonder.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -27,20 +27,20 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">U.S. Charities</a>
+      <a class="navbar-brand" href="/index">U.S. Charities</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="usmap.html">US Map</a>
+            <a class="nav-link" href="/usmap">U.S. Charity Map</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="metrics.html">Charity Metrics</a>
+            <a class="nav-link" href="/metricspage">Charity Metrics</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="rankings.html">Top 10</a>
+            <a class="nav-link" href="/rankings">Top 15 Charities</a>
           </li>
         </ul>
       </div>
@@ -50,20 +50,22 @@
   <header class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">Key Charity Metrics</h1>
+        <h1 class="masthead-heading mb-0">Charities By Org Type</h1>
         <h1 class="masthead-heading mb-0">  </h1>
         <h1 class="masthead-subheading mb-0"> </h1>  
-        <!-- <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Andrew and Cindy</a> -->
+        <!-- <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Clear Screen</a> -->
       </div>
    
       <!-- <div class="bg-circle-2 bg-circle"></div> -->
-
-      <h5> Charity Name: 
-            <select id="selName" onchange="optionChanged(this.value)"></select></h5>
       <div id="bloodhound">
-        <h5> Organization Type:
-            <input class="typeahead" type="text" placeholder="Human and Civil Rights : Advocacy and Education"></h5>        
-      </div>
+        <h5> Enter Desired Organization Type:
+            <input style="width: 500px;" class="typeahead form-control" type="text" placeholder="Animals">      
+      <!-- </div>
+      <div> -->
+         Charity Name: 
+            <select style="width: 500px;" id="selName" onchange="optionChanged(this.value)"></select></h5>
+      </div>      
+      <button type="button" id="clear-btn" class="btn btn-primary btn-xl rounded-pill mt-5">Clear Table Data</button>
     <!-- </div>          -->
     <!-- <div class="bg-circle-2 bg-circle"></div> -->
     <!-- <div id="table-area" class=""> -->
@@ -101,13 +103,25 @@
     <!-- /.container -->
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- Bootstrap core JavaScript - without FLASK -->
+  <!-- <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="static/js/accounting.js"></script>
-  <script src="static/js/typeahead.js"></script>
-  <script src="static/js/metrics.js"></script>
+  <script src="static/js/typeahead.js/bloodhound.js"></script>
+  <script src="static/js/typeahead.js/typeahead.bundle.js"></script>
+  <script src="static/js/typeahead.js/typeahead.jquery.js"></script>
+  <script src="static/js/metrics.js"></script> -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="{{ url_for('static', filename='js/accounting.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/typeahead.js/bloodhound.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/typeahead.js/typeahead.bundle.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/typeahead.js/typeahead.jquery.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/metrics.js') }}"></script>
 </body>
 
 </html>
