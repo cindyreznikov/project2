@@ -53,7 +53,7 @@ function createMarkers(response) {
     // Loop through the charities array
     for (var i = 0; i < response.length; i++) {
         var charityInfo = response[i];
-        if (charityInfo.lat && charityInfo.lng)
+        if (charityInfo.charity_name && charityInfo.city && charityInfo.lat && charityInfo.lng)
         {
         // For each charityInfo, create a marker and bind a popup with the charityInfo's name
         // Using the response from a future d3 call loop through the charities and create a marker to represent each charityInfo.
@@ -72,4 +72,4 @@ function createMarkers(response) {
 
 // // Perform a GET request using D3 to the [Citi Bike Station Information Endpoint](https://gbfs.citibikenyc.com/gbfs/en/station_information.json) that will call the `createMarkers` function.
 // Call on the createMarkers function and call on the API -- able to do them both within the d3.json execution
-d3.json("../data/charity_2.json", createMarkers);
+d3.json("/location", createMarkers);
