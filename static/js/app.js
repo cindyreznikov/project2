@@ -3,9 +3,9 @@ function buildCharts(organization) {
   // @TODO: Use `d3.json` to Fetch the Sample Data for the Plots
   // d3.json(`/ranking/${organization}`).then((data) => {
 
-    var orgurl = "/ranking/" + organization;
-    d3.json(orgurl).then((data) => {
-    //d3.json(`/ranking/<organization>`).then((data) => {
+    //var orgurl = '/ranking/' + organization;
+    //d3.json(orgurl).then((data) => {
+    d3.json(`/ranking/${organization}`).then((data) => {
     // @TODO: Build a Bubble Chart Using the Sample Data
     // console.log(data.filter(function(item){
     //     return item.organization_type == organization;
@@ -19,7 +19,7 @@ function buildCharts(organization) {
     var bubbleLayout = {
       margin: { t: 0 },
       hovermode: "closests",
-      title:'<b> All Data for Category: ${organization} </b>',
+      title:`<b> All Data for Category: ${organization} </b>`,
       xaxis: { title: "Charity ID"},
       yaxis: { title: "overall score"}
     }
@@ -59,7 +59,7 @@ function buildCharts(organization) {
         orientation: "h"
     }];
     var layout = {
-        title:'<b> Top 15 Charities for Category: ${organization} </b>',
+        title:`<b> Top 15 Charities for Category: ${organization} </b>`,
         yaxis:{autorange:'reversed'},
         height: 550,
         width: 700
