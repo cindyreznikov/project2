@@ -1,12 +1,18 @@
-// Project 2 - displaying Charity Metrics 
+
+// Project 2 - displaying key charity info based on organization type
+// using 'type ahead' feature on the organization type and a drop down menu for
+// charity name.
+
 var tbody = d3.select("tbody");
 var tableBody = document.querySelector("tbody");
 var inputValue = "";
 var button = d3.select("#clear-btn")
 
-// Use D3 to read the json data
-d3.json("./data/charity.json").then((InputData) => {
-    
+// Use D3 to read the json data from file or Flask (via SQLite)
+
+// d3.json("./data/charity.json").then((InputData) => {
+d3.json("/metrics").then((InputData) => {
+
     var charityData = InputData.map(data => data)
     var charityOrgType = InputData.map(data => data.organization_type);
 
@@ -46,7 +52,6 @@ d3.json("./data/charity.json").then((InputData) => {
            .enter()
            .append("option")
            .html(d => d);
-
 
         //call this functions to display the filtered charity data in the table
 
@@ -93,7 +98,9 @@ function optionChanged(newCharity) {
     var newCharity = dropdownMenu.value;
     console.log(`New Charity: ${newCharity}`)
 
-    d3.json("./data/charity.json").then((InputData) => {
+
+    // d3.json("./data/charity.json").then((InputData) => {
+    d3.json("/metrics").then((InputData) => {  
         var charityData = InputData.map(data => data)
         filteredData = charityData.filter(id => id.charity_name == newCharity);
         console.log("filtered data in option changed: ", filteredData)
