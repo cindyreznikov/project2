@@ -38,7 +38,8 @@ function createMap(charityHqs) {
 
 function createMarkers(response) {
     // print "hello" to ensure this function is running
-    console.log("hello");
+    console.log("hello jodi");
+    console.log(response);
 
     // Pull the "charities" property off of response.data
     // var charities = response[0];
@@ -51,10 +52,11 @@ function createMarkers(response) {
     var charitiesArray = [];
 
     // Loop through the charities array
-    if (charityInfo.charity_name && charityInfo.city && charityInfo.lat && charityInfo.lng)
+    // if (charityInfo.charity_name && charityInfo.city && charityInfo.lat && charityInfo.lng)
     for (var i = 0; i < response.length; i++) {
         var charityInfo = response[i];
-        // if (charityInfo.charity_name && charityInfo.city && charityInfo.lat && charityInfo.lng)
+
+        if (charityInfo.charity_name && charityInfo.city && charityInfo.lat && charityInfo.lng)
         {
         // For each charityInfo, create a marker and bind a popup with the charityInfo's name
         // Using the response from a future d3 call loop through the charities and create a marker to represent each charityInfo.
