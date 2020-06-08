@@ -38,7 +38,7 @@ def close_connection(exception):
 @app.route('/metrics')
 def metrics():
     #cur = get_db().cursor()
-    scores = []
+    scores = {}
     charity_names = []
     city = []
     state = []
@@ -48,27 +48,34 @@ def metrics():
     leader_comp = []
     total_cont = []
     charity_id = []
+    metrics_data = []
+    columns = ['charity_name', 'city', 'state_abbr', 'organization_type', 'overall_score', 'administrative_expenses', 'compensation_leader_compensation', 'total_contributions', 'charity_id']
+    #metric = query_db('select charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions, charity_id from Charity order by charity_name')   
     for metric in query_db('select charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions, charity_id from Charity order by charity_name'):
-       #print(metric)
-       charity_names.append(metric["charity_name"])
-       city.append(metric["city"])
-       state.append(metric["state_abbr"])
-       organization_type.append(metric["organization_type"])
-       scores.append(metric["overall_score"])
-       admin_exp.append(metric["administrative_expenses"])
-       leader_comp.append(metric["compensation_leader_compensation"])
-       total_cont.append(metric["total_contributions"])
-       charity_id.append(metric["charity_id"])
-    metrics_data = {}
-    metrics_data["charity_name"] = charity_names
-    metrics_data["city"] = city
-    metrics_data["state"] = state
-    metrics_data["organization_type"] = organization_type
-    metrics_data["scores"] = scores
-    metrics_data["admin_expenses"] = admin_exp
-    metrics_data["leader_compensation"] = leader_comp
-    metrics_data["total_contributions"] = total_cont
-    metrics_data["charity_id"] = charity_id  
+    #    #print(metric)
+    #    met-dictionary = {}
+    
+        metrics_data.append(dict(zip(columns, metric)))
+    #    charity_names.append(metric["charity_name"])
+    #    city.append(metric["city"])
+    #    state.append(metric["state_abbr"])
+    #    organization_type.append(metric["organization_type"])
+    #    scores.append(metric["overall_score"])
+    #    admin_exp.append(metric["administrative_expenses"])
+    #    leader_comp.append(metric["compensation_leader_compensation"])
+    #    total_cont.append(metric["total_contributions"])
+    #    charity_id.append(metric["charity_id"])
+    # metrics_data = []
+    # metrics_data["charity_name"] = charity_names
+    # metrics_data["city"] = city
+    # metrics_data["state"] = state
+    # metrics_data["organization_type"] = organization_type
+    # metrics_data["scores"] = scores
+    # metrics_data["admin_expenses"] = admin_exp
+    # metrics_data["leader_compensation"] = leader_comp
+    # metrics_data["total_contributions"] = total_cont
+    # metrics_data["charity_id"] = charity_id 
+    #print(metric) 
     return jsonify(metrics_data)
 
 @app.route('/names')
@@ -86,58 +93,54 @@ def locs():
     charity_names = []
     lat = []
     lng = []
-    city_names = []
+    locations_data= []
+    columns = ['charity_name', 'lat', 'lng', 'city']
     for location in query_db('select charity_name, lat, lng, city from Charity order by charity_name'):
-        charity_names.append(location["charity_name"])
-        lat.append(location["lat"])
-        lng.append(location["lng"])
-        city_names.append(location["city"])
+        locations_data.append(dict(zip(columns, location)))
+        # charity_names.append(location["charity_name"])
+        # lat.append(location["lat"])
+        # lng.append(location["lng"])
+        # city_names.append(location["city"])
 
-    locations_data = {}
-    locations_data["charity_name"] = charity_names
-    locations_data["latitude"] = lat
-    locations_data["longitude"] = lng
-    locations_data["city"] = city_names
+    # locations_data = {}
+    # locations_data["charity_name"] = charity_names
+    # locations_data["latitude"] = lat
+    # locations_data["longitude"] = lng
+    # locations_data["city"] = city_names
 
     return jsonify(locations_data)
 
 @app.route('/ranking/<organization>')
 def ranking(organization):
     #cur = get_db().cursor()
-    #organization = "Animals "
-    scores = []
-    charity_names = []
-    city = []
-    state = []
-    organization_type = []
-    scores = []
-    admin_exp = []
-    leader_comp = []
-    total_cont = []
-    charity_id = []
+    organization = "Animals "
+    
+    rankings_data = []
+    columns = ['charity_id', 'charity_name', 'city', 'state_abbr', 'organization_type', 'overall_score', 'administrative_expenses', 'compensation_leader_compensation', 'total_contributions']
     charities = query_db('select distinct charity_id, charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions from Charity where organization_type = ?', (organization,), one=False)
     for rank in charities: #query_db('select charity_id, charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions from Charity where organization_type = ?', (org,), one=True):
-        print(rank)
-        charity_id.append(rank["charity_id"])
-        charity_names.append(rank["charity_name"])
-        city.append(rank["city"])
-        state.append(rank["state_abbr"])
-        organization_type.append(rank["organization_type"])
-        scores.append(rank["overall_score"])
-        admin_exp.append(rank["administrative_expenses"])
-        leader_comp.append(rank["compensation_leader_compensation"])
-        total_cont.append(rank["total_contributions"])
-    rankings_data = {}
-    rankings_data["charity_id"] = charity_id
-    rankings_data["charity_name"] = charity_names
-    rankings_data["city"] = city
-    rankings_data["state"] = state
-    rankings_data["organization_type"] = organization_type
-    rankings_data["scores"] = scores
-    rankings_data["admin_expenses"] = admin_exp
-    rankings_data["leader_compensation"] = leader_comp
-    rankings_data["total_contributions"] = total_cont
-    print(rankings_data["charity_name"])
+        rankings_data.append(dict(zip(columns, rank)))
+    #     print(rank)
+    #     charity_id.append(rank["charity_id"])
+    #     charity_names.append(rank["charity_name"])
+    #     city.append(rank["city"])
+    #     state.append(rank["state_abbr"])
+    #     organization_type.append(rank["organization_type"])
+    #     scores.append(rank["overall_score"])
+    #     admin_exp.append(rank["administrative_expenses"])
+    #     leader_comp.append(rank["compensation_leader_compensation"])
+    #     total_cont.append(rank["total_contributions"])
+    # rankings_data = {}
+    # rankings_data["charity_id"] = charity_id
+    # rankings_data["charity_name"] = charity_names
+    # rankings_data["city"] = city
+    # rankings_data["state"] = state
+    # rankings_data["organization_type"] = organization_type
+    # rankings_data["scores"] = scores
+    # rankings_data["admin_expenses"] = admin_exp
+    # rankings_data["leader_compensation"] = leader_comp
+    # rankings_data["total_contributions"] = total_cont
+    # print(rankings_data["charity_name"])
     return jsonify(rankings_data)
 
 @app.route("/")
