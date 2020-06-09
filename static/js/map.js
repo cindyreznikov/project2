@@ -1,6 +1,7 @@
 // Create a function called `createMap` that will take in `bikestations` as an argument.
 // function to create the initial map layer
 function createMap(charityHqs) {
+    // charityHqs
 
     // Create the tile layer that will be the background
     var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -13,7 +14,7 @@ function createMap(charityHqs) {
 
     // Create a baseMaps object to hold the lightmap layer
     var baseMaps = {
-        "Street Map": lightmap
+        "US Map": lightmap
     };
 
     // Create an overlayMaps object to hold the charity headquarters layer
@@ -26,26 +27,28 @@ function createMap(charityHqs) {
         center: [37.09, -95.71],
         zoom: 3,
         layers: [lightmap, charityHqs]
+        // , charityHqs
     });
 
     // Create a "layer control", pass in baseMaps and overlayMaps & add this to the map object we just created above
-    L.control.layers(baseMaps, overlayMaps, {
-        collapsed: false
-    }).addTo(map);
+    // , overlayMaps
+    L.control.layers(baseMaps, overlayMaps).addTo(map);
+    // collapsed: false}
+
+
+    // return map;
 
 }
 
+// createMap();
+
+// Create a new marker cluster group
+var markers = L.markerClusterGroup();
 
 function createMarkers(response) {
     // print "hello" to ensure this function is running
     console.log("hello jodi");
     console.log(response);
-
-    // Pull the "charities" property off of response.data
-    // var charities = response[0];
-    // console.log(charities);
-    // for (var i = 0; i < charities.length; i++) {
-    //     var charityInfo = charities[i];
 
 
     // Initialize an array to hold bike markers
@@ -56,20 +59,28 @@ function createMarkers(response) {
     for (var i = 0; i < response.length; i++) {
         var charityInfo = response[i];
 
-        if (charityInfo.charity_name && charityInfo.city && charityInfo.lat && charityInfo.lng)
-        {
-        // For each charityInfo, create a marker and bind a popup with the charityInfo's name
-        // Using the response from a future d3 call loop through the charities and create a marker to represent each charityInfo.
-        var charityMarker = L.marker([charityInfo.lat, charityInfo.lng])
-            // Give each marker a popup to display the name and capacity of its charityInfo.
-            .bindPopup("Charity Name: " + charityInfo.charity_name + "<br></br>" + "City: " + charityInfo.city)
+        if (charityInfo.charity_name && charityInfo.city && charityInfo.lat && charityInfo.lng) {
 
-        // Add the marker to the charitiesArray array
-        charitiesArray.push(charityMarker);
+            var charityMarker = L.marker([charityInfo.lat, charityInfo.lng])
+                // Give each marker a popup to display the name and capacity of its charityInfo.
+                .bindPopup("Charity Name: " + charityInfo.charity_name + "<br></br>" + "City: " + charityInfo.city);
+
+            // Add the marker to the charitiesArray array
+            charitiesArray.push(charityMarker);
+
+            var descriptor = "abc"
+
+            // Add a new marker to the cluster group and bind a pop-up
+            markers.addLayer(charityMarker);
+            // .bindPopup(descriptor);
+            // .marker([location.coordinates[1], location.coordinates[0]]).bindPopup(response[i].descriptor));
+
         }
+        // console.log(charityInfo.lat)
     }
 
-    createMap(L.layerGroup(charitiesArray));
+    // map.addLayer(markers)
+    createMap(L.layerGroup(markers));
 
 }
 

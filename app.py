@@ -86,19 +86,19 @@ def locs():
     charity_names = []
     lat = []
     lng = []
-    city_names = []
+    locations_data= []
+    columns = ['charity_name', 'lat', 'lng', 'city']
     for location in query_db('select charity_name, lat, lng, city from Charity order by charity_name'):
-        charity_names.append(location["charity_name"])
-        lat.append(location["lat"])
-        lng.append(location["lng"])
-        city_names.append(location["city"])
-
-    locations_data = {}
-    locations_data["charity_name"] = charity_names
-    locations_data["latitude"] = lat
-    locations_data["longitude"] = lng
-    locations_data["city"] = city_names
-
+        locations_data.append(dict(zip(columns, location)))
+        # charity_names.append(location["charity_name"])
+        # lat.append(location["lat"])
+        # lng.append(location["lng"])
+        # city_names.append(location["city"])
+    # locations_data = {}
+    # locations_data["charity_name"] = charity_names
+    # locations_data["latitude"] = lat
+    # locations_data["longitude"] = lng
+    # locations_data["city"] = city_names
     return jsonify(locations_data)
 
 @app.route('/ranking/<organization>')
