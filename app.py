@@ -35,19 +35,24 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
+@app.route('/paras')
+def paras():
+    parNames=['total_contributions','admin_expenses','leader_compensation','program_expenses','fundraising_expenses']
+    return jsonify(parNames)
+
 @app.route('/metrics')
 def metrics():
     #cur = get_db().cursor()
-    scores = {}
-    charity_names = []
-    city = []
-    state = []
-    organization_type = []
-    scores = []
-    admin_exp = []
-    leader_comp = []
-    total_cont = []
-    charity_id = []
+    # scores = {}
+    # charity_names = []
+    # city = []
+    # state = []
+    # organization_type = []
+    # scores = []
+    # admin_exp = []
+    # leader_comp = []
+    # total_cont = []
+    # charity_id = []
     metrics_data = []
     columns = ['charity_name', 'city', 'state_abbr', 'organization_type', 'overall_score', 'administrative_expenses', 'compensation_leader_compensation', 'total_contributions', 'charity_id']
     #metric = query_db('select charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions, charity_id from Charity order by charity_name')   
