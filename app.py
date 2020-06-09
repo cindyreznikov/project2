@@ -154,10 +154,10 @@ def scatter_page():
     """Scatter Page"""
     return render_template("scatter.html")
 
-@app.route("/usmap")
-def us_map():
-    """US Map page"""
-    return render_template("usmap.html")
+@app.route("/map")
+def map():
+    """Map page"""
+    return render_template("map.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
