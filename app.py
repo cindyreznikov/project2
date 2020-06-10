@@ -75,9 +75,6 @@ def org():
 @app.route('/location')
 def locs():
     
-    charity_names = []
-    lat = []
-    lng = []
     locations_data= []
     columns = ['charity_name', 'lat', 'lng', 'city']
     for location in query_db('select charity_name, lat, lng, city from Charity order by charity_name'):
