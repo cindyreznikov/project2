@@ -9,6 +9,9 @@ import numpy as np
 from datetime import datetime, timedelta
 import pandas as pd
 
+from flask_sqlalchemy import SQLAlchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db.sqlite"
+
 #charity_data=pd.read_sql("select * from charity",conn)
 database = './data/Charity_new.sqlite'
 
