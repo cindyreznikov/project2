@@ -24,7 +24,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-from .models import Coord,Charity
+from .models import Charity
 
 
 # create route that renders index.html template
@@ -84,6 +84,18 @@ def rank():
     """US Rankings page"""
     return render_template("rankings.html")
 
+@app.route('/paras')
+def paras():
+    parNames=['total_contributions','admin_expenses','leader_compensation','program_expenses','fundraising_expenses']
+    return jsonify(parNames)
+
+@app.route('/names')
+def org():
+    orgNames = ['International ', 'Human Services ', 'Environment ', 'Education ',
+       'Human and Civil Rights ', 'Health ', 'Animals ',
+       'Community Development ', 'Religion ',
+       'Arts, Culture, Humanities ', 'Research and Public Policy ']
+    return (orgNames)
 
 if __name__ == "__main__":
     app.run()
