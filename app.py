@@ -65,10 +65,10 @@ def ranking():
 
 @app.route('/names')
 def org():
-    orgNames = ['International ', 'Human Services ', 'Environment ', 'Education ',
-       'Human and Civil Rights ', 'Health ', 'Animals ',
-       'Community Development ', 'Religion ',
-       'Arts, Culture, Humanities ', 'Research and Public Policy ']
+    orgNames = ['International', 'Human Services', 'Environment', 'Education',
+       'Human and Civil Rights', 'Health', 'Animals',
+       'Community Development', 'Religion',
+       'Arts, Culture, Humanities', 'Research and Public Policy']
 
     return jsonify(orgNames)
 
