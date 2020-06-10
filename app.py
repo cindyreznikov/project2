@@ -51,20 +51,20 @@ def home():
 
 @app.route("/location")
 def locs():
-    results = db.session.query(Charity.charity_name, Coord.lat, Coord.lng, Coord_city).all()
+    results = db.session.query(Charity.charity_name, Charity.lat, Charity.lng, Charity.city_coor.city).all()
 
     charity_name = [result[0] for result in results]
     lat = [result[1] for result in results]
     lng = [result[2] for result in results]
     city = [result[3] for result in results]
-    pet_data = [{
+    locations_data = [{
         "charity_name": charity_name,
         "lat": lat,
         "lng": lng,
         "city": city
     }]
 
-    return jsonify(pet_data)
+    return jsonify(locations_data)
 
 
 
