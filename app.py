@@ -172,10 +172,10 @@ def scatter_page():
     """Scatter Page"""
     return render_template("scatter.html")
 
-@app.route("/usmap")
+@app.route("/map")
 def us_map():
     """US Map page"""
-    return render_template("usmap.html")
+    return render_template("map.html")
 
 @app.route("/rank")
 def rank():
