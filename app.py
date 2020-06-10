@@ -53,6 +53,16 @@ def metrics():
 
     return jsonify(metrics_data)
 
+@app.route('/rankings')
+def metrics():
+    #cur = get_db().cursor()
+    rankings_data = []
+    columns = ['charity_name', 'city', 'state_abbr', 'organization_type', 'overall_score', 'administrative_expenses', 'compensation_leader_compensation', 'total_contributions', 'fundraising_expenses','program_expenses','charity_id']
+    #metric = query_db('select charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions, charity_id from Charity order by charity_name')
+    for ranks in query_db('select charity_name, city, state_abbr, organization_type, overall_score, administrative_expenses, compensation_leader_compensation, total_contributions, program_expenses, fundraising_expenses, charity_id from Charity order by charity_name'):
+        rankings_data.append(dict(zip(columns, ranks)))
+    return jsonify(rankings_data)
+
 @app.route('/names')
 def org():
     orgNames = ['International ', 'Human Services ', 'Environment ', 'Education ',

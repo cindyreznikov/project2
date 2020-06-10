@@ -3,7 +3,7 @@ function buildCharts(organization, newPara) {
 
     // @TODO: Use `d3.json` to Fetch the Sample Data for the Plots
     // d3.json(`/ranking/${organization}`).then((data) => {
-    d3.json("/metrics").then((data) => {
+    d3.json("/rankings").then((data) => {
       // @TODO: Build a Bubble Chart Using the Data
   
       var filteredData = [];
