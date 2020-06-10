@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>U.S. Charities</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/one-page-wonder.min.css') }}" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">U.S.Charities</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/usmap">U.S. Charity Map</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/metricspage">Charity Metrics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/rank">Top 15 Charities</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="masthead text-center text-white">
+    <div class="masthead-content">
+
+
+
+  <section>
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- <h1> Histogram :</h1> -->
+            <h4>Number Of Charities In Each Category </h4>
+            <div id="histo"></div>
+          </div>
+        </div>
+   
+        <div class="row">
+          <div class="col-md-12 ">
+            <br>
+            <br>
+            <h4>Top 15 Charities Based On Overall Scores In Each Category</h4>
+            <p>use the interactive barchart below to explore the finance data</p>
+            <br>
+          </div>
+        </div> 
+
+
+      <div class="row">
+        <div class="col-md-4">
+
+
+          <br>
+          <div class="well" style="text-align:left">
+            <h6>Filter By Category:</h6>
+            <select id="selDataset" onchange="optionChanged(this.value)"></select>
+          </div>
+          <br>
+          <!-- add for select parameter -->
+          <div class="well" style="text-align:left">
+            <h6>Select Finance Data To Display:</h6>
+            <select id="selpara" onchange="optionChanged(this.value)"></select>
+          </div>
+
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <!-- <h3 class="panel-title">Demographic Info</h3> -->
+            </div>
+            <div id="sample-metadata" class="panel-body"></div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div id="chart"></div>
+        </div>
+
+      </div>
+      
+    </div>
+
+  </section>
+
+</div>
+<div class="bg-circle-1 bg-circle"></div>
+<div class="bg-circle-2 bg-circle"></div>
+<div class="bg-circle-3 bg-circle"></div>
+<div class="bg-circle-4 bg-circle"></div>
+</header>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-black">
+    <div class="container">
+      <p class="m-0 text-center text-white small">Copyright &copy; Jade, Jodi, Ronaldo, Cindy, Andrew</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <!-- <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+    <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- <script type="text/javascript" src="./static/js/app.js"></script> -->
+  <!-- <script src="{{ url_for('static', filename='js/app.js') }}"></script> -->
+  <script src="{{ url_for('static', filename='js/rankings.js') }}"></script>
+</body>
+
+</html>
