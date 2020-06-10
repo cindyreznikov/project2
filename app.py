@@ -54,7 +54,7 @@ def metrics():
     return jsonify(metrics_data)
 
 @app.route('/rankings')
-def metrics():
+def rankings():
     #cur = get_db().cursor()
     rankings_data = []
     columns = ['charity_name', 'city', 'state_abbr', 'organization_type', 'overall_score', 'administrative_expenses', 'compensation_leader_compensation', 'total_contributions', 'fundraising_expenses','program_expenses','charity_id']
