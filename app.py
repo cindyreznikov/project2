@@ -69,7 +69,7 @@ def ranking():
 def org():
     orgNames = ['International', 'Human Services', 'Environment', 'Education',
        'Human and Civil Rights', 'Health', 'Animals',
-       'Community Development', 'Religion ',
+       'Community Development', 'Religion',
        'Arts, Culture, Humanities', 'Research and Public Policy']
 
     return jsonify(orgNames)
